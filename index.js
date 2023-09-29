@@ -30,7 +30,7 @@ function render() {
         element.textContent = user.firstName;
         return element;
     });
-    userName.append(...nameElements);
+    userName.replaceChildren(...nameElements);
 
     console.log(users);
     const userOccupation = document.querySelector(".occupation");
@@ -39,7 +39,7 @@ function render() {
         element.textContent = user.occupation;
         return element;
     });
-    userOccupation.append(...occupationElements);
+    userOccupation.replaceChildren(...occupationElements);
 
     console.log(users);
     const userPrice = document.querySelector(".price");
@@ -48,7 +48,7 @@ function render() {
         element.textContent = user.price;
         return element;
     });
-    userPrice.append(...priceElements);
+    userPrice.replaceChildren(...priceElements);
   }
 render();
 
@@ -56,10 +56,10 @@ render();
 function addFreelancer() {
     const userBob = new Freelancer(`Bob`, `Teacher`,50);
     users.push(userBob);
-    // render();
+    render();
 
-    if (users.length >= 2) {
-        clearInterval(addFreelancer);
+    if (users.length >= 1) {
+        clearInterval(addUserIntervalId);
         return;
       }
 }
@@ -74,13 +74,7 @@ function calculateAveragePrice(){
     console.log(averagePrice);
 
     const startingPrice = document.querySelector("#averagePrice");
-    const startingPriceElements = users.map((user)=> {
-        const element = document.createElement("span");
-        element.textContent = averagePrice;
-        return element;
-    });
-    startingPrice.replaceWith(...startingPriceElements);
-
-
+    startingPrice.textContent = averagePrice;
+    
 }
 calculateAveragePrice();

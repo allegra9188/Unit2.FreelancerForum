@@ -3,7 +3,7 @@ class Freelancer {
     constructor(firstName,occupation,price) {
         this.firstName = firstName;
         this.occupation = occupation;
-        this.startingPrice = price;
+        this.price = price;
     }
     
 }
@@ -65,6 +65,22 @@ function addFreelancer() {
 }
 
 // TODO: make a function to change average price depending on user
-// function calculateAveragePrice(){
-//     const price 
-// }
+function calculateAveragePrice(){
+    const sumPrice = users.reduce((total, user) =>{
+        return total + user.price;
+    },0)
+    
+    const averagePrice = sumPrice / users.length;
+    console.log(averagePrice);
+
+    const startingPrice = document.querySelector("#averagePrice");
+    const startingPriceElements = users.map((user)=> {
+        const element = document.createElement("span");
+        element.textContent = averagePrice;
+        return element;
+    });
+    startingPrice.replaceWith(...startingPriceElements);
+
+
+}
+calculateAveragePrice();
